@@ -2,9 +2,9 @@ import { Body, Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { JoinRequestDto } from 'src/users/dto/join.request.dto';
 import { UsersService } from 'src/users/users.service';
 
-@Controller('users')
+@Controller('api/users')
 export class UsersController {
-    constructor(private userService: UsersService) {
+    constructor(private usersService: UsersService) {
         
     }
     @Get()
@@ -14,7 +14,7 @@ export class UsersController {
 
     @Post()
     postUsers(@Body() data: JoinRequestDto) {
-        this.userService.postUsers(data.email, data.nickname, data.password);
+        this.usersService.postUsers(data.email, data.nickname, data.password);
     }
     
     @Post('login')
