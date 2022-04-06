@@ -10,10 +10,12 @@ import { ChannelsModule } from './channels/channels.module';
 import { DmsModule } from './dms/dms.module';
 import * as ormconfig from 'ormconfig';
 import { Users } from './entities/Users';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    AuthModule,
     UsersModule,
     WorkspacesModule,
     ChannelsModule,
