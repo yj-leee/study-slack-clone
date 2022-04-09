@@ -4,8 +4,8 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'src/httpException.filter';
 import { AppModule } from './app.module';
 import * as passport from 'passport';
-import session from 'express-session';
-import cookieParser from 'cookie-parser';
+import * as session from 'express-session';
+import * as cookieParser from 'cookie-parser';
 
 declare const module: any;
 
