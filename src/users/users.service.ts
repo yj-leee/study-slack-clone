@@ -31,15 +31,6 @@ export class UsersService {
     const user = await queryRunner.manager
       .getRepository(Users)
       .findOne({ where: { email } });
-    if (!email) {
-      throw new BadRequestException('이메일이 존재하지 않습니다');
-    }
-    if (!nickname) {
-      throw new BadRequestException('닉네임이 존재하지 않습니다');
-    }
-    if (!password) {
-      throw new BadRequestException('패스워드가 존재하지 않습니다');
-    }
     if (user) {
       throw new UnauthorizedException('이미 존재하는 사용자입니다.');
     }
@@ -50,7 +41,8 @@ export class UsersService {
         nickname,
         password: hashedPassword,
       });
-      const workspaceMember = await queryRunner.manager
+      throw new Error('롤백되나?');
+      const workspaceMember = queryRunner.manager
         .getRepository(WorkspaceMembers)
         .create();
       workspaceMember.UserId = returned.id;
@@ -65,7 +57,6 @@ export class UsersService {
       });
 
       await queryRunner.commitTransaction();
-      return true;
     } catch (error) {
       console.log(error);
       await queryRunner.rollbackTransaction();
