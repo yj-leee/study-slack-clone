@@ -42,6 +42,7 @@ export class UsersService {
         password: hashedPassword,
       });
       throw new Error('롤백되나?');
+
       const workspaceMember = queryRunner.manager
         .getRepository(WorkspaceMembers)
         .create();
